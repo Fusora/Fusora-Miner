@@ -3,7 +3,7 @@ from time import time
 from multiprocessing import Process, Queue
 from Block import *
 from Worker import *
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 workers = []
@@ -56,14 +56,16 @@ def sendRequest(req):
 
 @app.route('/')
 def index():
-    return 'Go to /mine to start mining'
+    obj = {'name': 'karl'}
+    # return obj
+    return jsonify(obj)
     
 @app.route('/mine')
 def startMining():
     validAddress = 'a44f70834a711F0DF388ab016465f2eEb255dEd0'.lower()
     blockData = getJobs(validAddress)
     result = applyWorker(mine, blockData)
-    return str(result)
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run()
