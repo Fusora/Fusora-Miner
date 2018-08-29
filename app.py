@@ -66,9 +66,4 @@ def index():
 
 if __name__ == '__main__':
     app.run()
-    # validAddress = 'a44f70834a711F0DF388ab016465f2eEb255dEd0'.lower()
-    # blockData = getJobs(validAddress)
-    # result = applyWorker(mine, blockData)
-    # if (result):
-    #     print(result)
         
