@@ -61,7 +61,7 @@ def index():
     return 'Hello'
     
 @app.route('/mine')
-def ():
+def startMining():
     validAddress = 'a44f70834a711F0DF388ab016465f2eEb255dEd0'.lower()
     blockData = getJobs(validAddress)
     result = applyWorker(mine, blockData)
