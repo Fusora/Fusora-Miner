@@ -56,7 +56,7 @@ def sendRequest(req):
 
 @app.route('/')
 def index():
-    return 'Hello'
+    return 'Go to /mine to start mining'
     
 @app.route('/mine')
 def startMining():
