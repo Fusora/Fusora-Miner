@@ -42,8 +42,6 @@ def applyWorker(function, blockData):
     for process in range(4):
         worker = Worker(target=function, name='process_{}'.format(process), args=(blockData, (process*1000)**2), queue=q)
         workers.append(worker)
-
-    for worker in workers:
         worker.start()
 
     result = q.get()
