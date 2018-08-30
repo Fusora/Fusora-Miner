@@ -57,13 +57,18 @@ def sendRequest(req):
 @app.route('/')
 def index():
     obj = {'name': 'karl'}
+    # print(request.args.get('name'))
     # return obj
     return jsonify(obj)
     
-@app.route('/mine')
-def startMining():
-    validAddress = 'a44f70834a711F0DF388ab016465f2eEb255dEd0'.lower()
-    blockData = getJobs(validAddress)
+@app.route('/mine/<address>')
+def startMining(address):
+    if address is None:
+        return "please specify address"
+    # validAddress = 'a44f70834a711F0DF388ab016465f2eEb255dEd0'.lower()
+    # print(validAddress)
+    # a44f70834a711f0df388ab016465f2eeb255ded0
+    blockData = getJobs(address)
     result = applyWorker(mine, blockData)
     return jsonify(result)
 
