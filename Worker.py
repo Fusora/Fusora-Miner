@@ -1,7 +1,8 @@
 from multiprocessing import Process, Queue
 class Worker(Process):
     def __init__(self, target, name, args, queue):
-        super().__init__()
+        # super().__init__()
+        super(Worker, self).__init__()
         self._target = target
         self._name = name
         self._args = args

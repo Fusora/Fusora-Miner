@@ -1,20 +1,10 @@
-import requests, json,  np, threading
+import requests, json,  np, threading, hashlib, binascii
 from time import time
-from multiprocessing import Process, Queue
 from Block import *
 from Worker import *
-from flask import Flask, jsonify
 
-app = Flask(__name__)
 workers = []
-
-
-
 def getJobs(address):
-    # jobs = {
-    #     'difficulty': 5,
-    #     'blockDataHash': "00004b611759df07b5a81d0cac07f2174c965bb6bced97c7f63325678a0189a2"
-    # }
     jobs = requests.get('https://stormy-everglades-34766.herokuapp.com/mining/get-mining-job/'+address)
     result = jobs.json()
     return result
@@ -51,27 +41,12 @@ def applyWorker(function, blockData):
             print('{} Has been terminated'.format(worker.name))
         return result
 
-def sendRequest(req):
-    jobs = requests.get('https://stormy-everglades-34766.herokuapp.com/mining/get-mining-job/'+address)
-
-@app.route('/')
-def index():
-    obj = {'name': 'karl'}
-    # print(request.args.get('name'))
-    # return obj
-    return jsonify(obj)
-    
-@app.route('/mine/<address>')
 def startMining(address):
-    if address is None:
-        return "please specify address"
-    # validAddress = 'a44f70834a711F0DF388ab016465f2eEb255dEd0'.lower()
-    # print(validAddress)
-    # a44f70834a711f0df388ab016465f2eeb255ded0
     blockData = getJobs(address)
     result = applyWorker(mine, blockData)
-    return jsonify(result)
 
 if __name__ == '__main__':
-    app.run()
-        
+    address = input("Enter address: ")
+    while address is not None:
+        startMining(address)
+        break
