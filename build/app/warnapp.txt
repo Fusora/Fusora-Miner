@@ -21,7 +21,7 @@ missing module named 'com.sun' - imported by pkg_resources._vendor.appdirs
 missing module named com - imported by pkg_resources._vendor.appdirs
 missing module named win32api - imported by distutils.msvccompiler, pkg_resources._vendor.appdirs
 missing module named win32com - imported by pkg_resources._vendor.appdirs
-missing module named _winreg - imported by mimetypes, urllib, winreg, requests.utils, platform, distutils.msvccompiler, distutils.msvc9compiler, numpy.distutils.cpuinfo, pkg_resources._vendor.appdirs
+missing module named _winreg - imported by mimetypes, urllib, winreg, platform, requests.utils, distutils.msvccompiler, distutils.msvc9compiler, numpy.distutils.cpuinfo, pkg_resources._vendor.appdirs
 missing module named pkg_resources.extern.packaging - imported by pkg_resources.extern, pkg_resources
 missing module named pkg_resources.extern.appdirs - imported by pkg_resources.extern, pkg_resources
 missing module named 'importlib.machinery' - imported by numpy.compat.py3k, pkg_resources
@@ -62,7 +62,7 @@ missing module named numpy.core.signbit - imported by numpy.core, numpy.testing.
 missing module named win32pdh - imported by numpy.testing._private.utils
 missing module named numpy.core.float64 - imported by numpy.core, numpy.testing._private.utils
 missing module named numpy.core.float32 - imported by numpy.core, numpy.testing._private.utils
-missing module named 'collections.abc' - imported by urllib3._collections, requests.compat, numpy.core.numeric, numpy.testing._private.decorators, numpy.lib.function_base, numpy.lib.npyio
+missing module named 'collections.abc' - imported by numpy.core.numeric, numpy.testing._private.decorators, numpy.lib.function_base, numpy.lib.npyio
 missing module named setuptools.extern.packaging - imported by setuptools.extern, setuptools.dist, setuptools.command.egg_info
 missing module named 'setuptools.extern.six' - imported by setuptools, setuptools.extension
 missing module named configparser - imported by setuptools.py36compat, numpy.distutils.system_info, numpy.distutils.npy_pkg_config
@@ -123,14 +123,14 @@ missing module named numpy.amax - imported by numpy, numpy.ma.core
 missing module named numpy.ndarray - imported by numpy, numpy.ma.core, numpy.ma.extras, numpy.ma.mrecords, numpy.ctypeslib
 missing module named numpy.histogramdd - imported by numpy, numpy.lib.twodim_base
 missing module named numpy.eye - imported by numpy, numpy.core.numeric
-missing module named ipaddress - imported by urllib3.packages.ssl_match_hostname._implementation, urllib3.util.ssl_
+missing module named ipaddress - imported by urllib3.packages.ssl_match_hostname._implementation
 missing module named backports - imported by urllib3.packages.ssl_match_hostname
 missing module named simplejson - imported by requests.compat
 missing module named "'urllib3.packages.six.moves.urllib'.parse" - imported by urllib3.request, urllib3.poolmanager
-runtime module named urllib3.packages.six.moves - imported by httplib, urllib3.connectionpool, urllib3.util.response, 'urllib3.packages.six.moves.urllib', urllib3.response, urllib3.util.queue
+runtime module named urllib3.packages.six.moves - imported by httplib, urllib3.connectionpool, urllib3.util.response, 'urllib3.packages.six.moves.urllib', urllib3.response
 missing module named socks - imported by urllib3.contrib.socks
-missing module named cryptography - imported by urllib3.contrib.pyopenssl, requests
 missing module named 'OpenSSL.crypto' - imported by urllib3.contrib.pyopenssl
 missing module named 'cryptography.x509' - imported by urllib3.contrib.pyopenssl
 missing module named 'cryptography.hazmat' - imported by urllib3.contrib.pyopenssl
+missing module named cryptography - imported by urllib3.contrib.pyopenssl
 missing module named OpenSSL - imported by urllib3.contrib.pyopenssl

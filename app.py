@@ -3,17 +3,35 @@ from time import time
 from Block import *
 from Worker import *
 
-workers = []
 def getJobs(address):
-    jobs = requests.get('https://stormy-everglades-34766.herokuapp.com/mining/get-mining-job/'+address)
+    jobs = requests.get('https://fusora.herokuapp.com/mining/get-mining-job/'+address)
     result = jobs.json()
     return result
 
-def mine(blockData, nonce):
+def submitMinedBlock(block):
+    # 6a8a742eaec8399a3fd48a91a227b9fdc003a484
+    response = requests.post('https://fusora.herokuapp.com/mining/submit-mined-block', json=block)
+    print(response.status_code)
+    print(response.json())
+    print(block)
+
+
+def mine(blockData, nonce, address):
+    print(blockData)
     blockDataHash = blockData['blockDataHash']
     difficulty = blockData['difficulty']
+    prevBlockHash = blockData['prevBlockHash']
+    transactions = blockData['transactions']
+    index = blockData['index']
     timestamp = time()/1000
-    block = Block(blockDataHash, difficulty, nonce, timestamp)
+    block = Block(blockDataHash, 
+        difficulty,
+        nonce, 
+        timestamp, 
+        prevBlockHash, 
+        transactions, 
+        index,
+        address)
     block.calculateHash()
     timeStart = time()
     while(block.blockHash[0:block.difficulty] != ''.join(str(x) for x in np.zeros(block.difficulty, int))):
@@ -21,16 +39,14 @@ def mine(blockData, nonce):
         block.timestamp = time()/1000
         block.calculateHash()
         # print(str(block.nonce) + "\t=>\t" + str(block.blockHash))
-    
-    print(time() - timeStart)
-    print('\nSuccessful: '+str(block.blockHash))
     minedBlock = block.minedBlock()
     return minedBlock
 
-def applyWorker(function, blockData):
+def applyWorker(function, blockData, address):
     q = Queue()
+    workers = []
     for process in range(4):
-        worker = Worker(target=function, name='process_{}'.format(process), args=(blockData, (process*1000)**2), queue=q)
+        worker = Worker(target=function, name='process_{}'.format(process), args=(blockData, (process*1000)**2, address), queue=q)
         workers.append(worker)
         worker.start()
 
@@ -43,7 +59,12 @@ def applyWorker(function, blockData):
 
 def startMining(address):
     blockData = getJobs(address)
-    result = applyWorker(mine, blockData)
+    result = applyWorker(mine, blockData, address)
+    if (result):
+        # print(result)
+        submitMinedBlock(result)
+
+
 
 if __name__ == '__main__':
     address = input("Enter address: ")
