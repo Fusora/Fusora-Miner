@@ -45,6 +45,7 @@ missing module named 'multiprocessing.popen_spawn_win32' - imported by /usr/loca
 missing module named 'multiprocessing.spawn' - imported by /usr/local/lib/python2.7/site-packages/PyInstaller/loader/rthooks/pyi_rth_multiprocessing.py
 missing module named _dummy_threading - imported by dummy_threading
 missing module named _xmlrpclib - imported by xmlrpclib
+missing module named _yaml - imported by yaml.cyaml
 missing module named _sha512 - imported by hashlib
 missing module named _sha256 - imported by hashlib
 missing module named _md5 - imported by hashlib

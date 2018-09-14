@@ -1,23 +1,24 @@
-import requests, json,  np, threading, hashlib, binascii
+import requests, json,  np, threading, hashlib, binascii, yaml
+from datetime import datetime
 from time import time
 from Block import *
 from Worker import *
 
+
 def getJobs(address):
     jobs = requests.get('https://fusora.herokuapp.com/mining/get-mining-job/'+address)
-    result = jobs.json()
-    return result
+    result = json.dumps(jobs.json())
+    return yaml.safe_load(result)
 
 def submitMinedBlock(block):
     # 6a8a742eaec8399a3fd48a91a227b9fdc003a484
+    print(block)
     response = requests.post('https://fusora.herokuapp.com/mining/submit-mined-block', json=block)
     print(response.status_code)
     print(response.json())
-    print(block)
-
 
 def mine(blockData, nonce, address):
-    print(blockData)
+    # print(blockData)
     blockDataHash = blockData['blockDataHash']
     difficulty = blockData['difficulty']
     prevBlockHash = blockData['prevBlockHash']
@@ -36,7 +37,7 @@ def mine(blockData, nonce, address):
     timeStart = time()
     while(block.blockHash[0:block.difficulty] != ''.join(str(x) for x in np.zeros(block.difficulty, int))):
         block.nonce = block.nonce + 1
-        block.timestamp = time()/1000
+        block.timestamp = datetime.fromtimestamp(time()).isoformat() + "Z"
         block.calculateHash()
         # print(str(block.nonce) + "\t=>\t" + str(block.blockHash))
     minedBlock = block.minedBlock()
@@ -59,6 +60,7 @@ def applyWorker(function, blockData, address):
 
 def startMining(address):
     blockData = getJobs(address)
+    print("IT goes here: ", blockData)
     result = applyWorker(mine, blockData, address)
     if (result):
         # print(result)

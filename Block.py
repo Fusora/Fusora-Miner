@@ -14,15 +14,15 @@ class Block:
 
     def calculateHash(self):
         data = str(self.blockDataHash) + "|" + str(self.timestamp) + "|" + str(self.nonce)
-        self.blockHash = str(binascii.hexlify(hashlib.new('sha256', data.encode('utf8')).digest()).decode('utf8'))
+        # print(hashlib.sha256(data))
+        self.blockHash =  hashlib.sha256(data.encode('utf8')).hexdigest()
 
     def minedBlock(self):
-        date = datetime.fromtimestamp(time()).isoformat() + "Z"
         return {
             'blockHash': self.blockHash,
             'blockDataHash': self.blockDataHash,
             'nonce': self.nonce,
-            'dateCreated': date,
+            'dateCreated': self.timestamp,
             'minerAddress': self.minerAddress,
             'transactions': self.transactions,
             'index': self.index,
