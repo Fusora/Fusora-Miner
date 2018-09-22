@@ -37,7 +37,7 @@ def mine(blockData, nonce, address):
     timeStart = time()
     while(block.blockHash[0:block.difficulty] != ''.join(str(x) for x in np.zeros(block.difficulty, int))):
         block.nonce = block.nonce + 1
-        block.timestamp = datetime.fromtimestamp(time()).isoformat() + "Z"
+        block.timestamp = datetime.fromtimestamp(time() - 28800).isoformat() + "Z"
         block.calculateHash()
         # print(str(block.nonce) + "\t=>\t" + str(block.blockHash))
     minedBlock = block.minedBlock()
