@@ -12,10 +12,10 @@ def getJobs(address):
 
 def submitMinedBlock(block):
     # 6a8a742eaec8399a3fd48a91a227b9fdc003a484
-    print(block)
-    response = requests.post('https://fusora.herokuapp.com/mining/submit-mined-block', json=block)
-    print(response.status_code)
-    print(response.json())
+    # 0xdeFf70036E79663f6d4ABdf04034Ed6035eC2D60
+    print(block);
+    response = requests.post('https://fusora.herokuapp.com/mining/submit-mined-block/', json=block)
+    print(response)
 
 def mine(blockData, nonce, address):
     # print(blockData)
@@ -60,7 +60,6 @@ def applyWorker(function, blockData, address):
 
 def startMining(address):
     blockData = getJobs(address)
-    print("IT goes here: ", blockData)
     result = applyWorker(mine, blockData, address)
     if (result):
         # print(result)

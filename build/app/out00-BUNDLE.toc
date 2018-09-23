@@ -1,0 +1,1 @@
+([('app', '/Users/skjghisole/Documents/Miner/miner/dist/app', 'EXECUTABLE')],)

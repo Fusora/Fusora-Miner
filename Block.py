@@ -23,7 +23,7 @@ class Block:
             'blockDataHash': self.blockDataHash,
             'nonce': self.nonce,
             'dateCreated': self.timestamp,
-            'minerAddress': self.minerAddress,
+            'minedBy': self.minerAddress,
             'transactions': self.transactions,
             'index': self.index,
             'prevBlockHash': self.prevBlockHash,

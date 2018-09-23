@@ -1,5 +1,5 @@
 ('/Users/skjghisole/Documents/Miner/miner/dist/app',
- True,
+ False,
  False,
  False,
  None,
@@ -1217,7 +1217,7 @@
  [],
  False,
  False,
- 1536155170,
- [('run',
-   '/usr/local/lib/python2.7/site-packages/PyInstaller/bootloader/Darwin-64bit/run',
+ 1537688481,
+ [('runw',
+   '/usr/local/lib/python2.7/site-packages/PyInstaller/bootloader/Darwin-64bit/runw',
    'EXECUTABLE')])
